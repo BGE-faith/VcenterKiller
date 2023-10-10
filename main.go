@@ -61,7 +61,7 @@ func main() {
 	flag.StringVar(&command, "c", "", "command")
 	flag.StringVar(&exp_type, "t", "", "CVE-2021-21972 Module")
 	flag.StringVar(&rmi, "r", "", "rmi server address")
-	flag.StringVar(&rmi, "proxy", "", "proxy server, support http and socks5")
+	flag.StringVar(&proxy, "proxy", "", "proxy server, support http and socks5")
 	flag.Usage = usage
 	flag.Parse()
 	banner()
@@ -75,7 +75,7 @@ func main() {
 	}
 	fmt.Println("[*] url: " + url)
 	switch cve {
-	case "22205":
+	case "22005":
 		{
 			if checkProxyServer(proxy) == true {
 				c_22005.Proxy_server = proxy
@@ -191,8 +191,8 @@ func main() {
 func checkProxyServer(Proxy_url string) bool {
 	_, err := url_parse.Parse(Proxy_url)
 	if err != nil {
-		return true
-	} else {
 		return false
+	} else {
+		return true
 	}
 }
